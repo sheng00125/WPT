@@ -411,6 +411,11 @@
               <FileType>1</FileType>
               <FilePath>.\pwm.c</FilePath>
             </File>
+            <File>
+              <FileName>Adc_Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Adc_Timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

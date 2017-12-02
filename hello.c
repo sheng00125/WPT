@@ -7,6 +7,7 @@
 #include "nokia_5110.h"
 #include "NRF24L01.H"
 #include "pwm.h"
+#include "Adc_Timer.h"
 
 //#define TX_Machine 1
 u8 num = 0;
@@ -34,18 +35,23 @@ int main(void)
 
 	RX_Mode();
 	TIM1_Mode_Config() ;
+	Adc_Init();
 	while(temp == 1)
 	{}
 	while(1)
 	{
 
-		temp=NRF24L01_RxPacket(Rx_Buf);
-		LCD_clear();
+		NRF24L01_RxPacket(Rx_Buf);
+		//LCD_clear();
 		LCD_set_XY(0,0);
 		LCD_write_char(Rx_Buf[0]/100%10 + '0');
 		LCD_write_char(Rx_Buf[0]/10%10 + '0');
-		LCD_write_char(Rx_Buf[0]%10 + '0');		
-
+		LCD_write_char(Rx_Buf[0]%10 + '0');	
+		LCD_set_XY(0,1);
+		LCD_write_char(temp/100%10 + '0');
+		LCD_write_char(temp/10%10 + '0');
+		LCD_write_char(temp%10 + '0');	
+		temp=Get_Adc(0);
 	}
 }
 

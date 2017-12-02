@@ -17,7 +17,7 @@ void delay_init(u8 SYSCLK)  		//系统时钟是72MHz,SYSCLK=72
 void delayus(u32 us)  
 {  
     u32 temp;  
-    SysTick->LOAD = us*20;  		//延时1us的话就是  1*9=9,装到load寄存器中  
+    SysTick->LOAD = us*9;  		//延时1us的话就是  1*9=9,装到load寄存器中  
     SysTick->VAL=0x00;						//计数器清0
     SysTick->CTRL = 0x01;					//systick定时器使能
     do

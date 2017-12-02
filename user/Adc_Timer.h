@@ -5,6 +5,6 @@
 
 void  Adc_Init(void);
 u16 Get_Adc(u8 ch);
-	
+void Timerx_Init(u16 arr,u16 psc);
 
 #endif

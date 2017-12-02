@@ -28,21 +28,32 @@ int main(void)
 
 	NRF_GPIO_Config(); 
 
-	temp = NRF24L01_Check();   
-
-	LCD_init(); //初始化液晶    
-	LCD_clear();
-
+	while(temp == 1)
+	{
+			temp = NRF24L01_Check();  
+	}
 	RX_Mode();
 	TIM1_Mode_Config() ;
 	Adc_Init();
-	while(temp == 1)
-	{}
+	LCD_init(); //初始化液晶    
+	LCD_clear();
+	Timerx_Init(0,0);
+
 	while(1)
 	{
 
 		NRF24L01_RxPacket(Rx_Buf);
-		//LCD_clear();
+
+	}
+}
+
+
+
+void TIM3_IRQHandler(void)   //TIM3中断
+{
+	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) //检查指定的TIM中断发生与否:TIM 中断源 
+		{
+		TIM_ClearITPendingBit(TIM3, TIM_IT_Update  );  //清除TIMx的中断待处理位:TIM 中断源 
 		LCD_set_XY(0,0);
 		LCD_write_char(Rx_Buf[0]/100%10 + '0');
 		LCD_write_char(Rx_Buf[0]/10%10 + '0');
@@ -52,11 +63,8 @@ int main(void)
 		LCD_write_char(temp/10%10 + '0');
 		LCD_write_char(temp%10 + '0');	
 		temp=Get_Adc(0);
-	}
+		}
 }
-
-
-
 
 
 

@@ -28,7 +28,7 @@ int main(void)
 
 	NRF_GPIO_Config(); 
 
-	while(temp == 1)
+	while(temp != 0)
 	{
 			temp = NRF24L01_Check();  
 	}

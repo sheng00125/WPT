@@ -9,7 +9,7 @@ void TIM1_Mode_Config(void)
 
    //  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOE, ENABLE); 
 
-         RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE); 
+         RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_TIM1|RCC_APB2Periph_GPIOB, ENABLE); 
 
  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13; 
  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 
@@ -31,7 +31,8 @@ void TIM1_Mode_Config(void)
     TIM_TimeBaseInit(TIM1, &TIM_BaseInitStructure); 
     //??ARR??????(?????????????) 
     TIM_ARRPreloadConfig(TIM1, ENABLE); 
-
+		TIM1->BDTR=0x19;
+		
     //TIM1_OC1????(??1?????) 
     TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; 
     TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable; 
@@ -49,6 +50,7 @@ void TIM1_Mode_Config(void)
     TIM_Cmd(TIM1, ENABLE); 
     //TIM1_OC????PWM(????) 
     TIM_CtrlPWMOutputs(TIM1, ENABLE); 
+
 } 
 
 

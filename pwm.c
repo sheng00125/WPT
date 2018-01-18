@@ -11,15 +11,15 @@ void TIM1_Mode_Config(void)
 
          RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_TIM1|RCC_APB2Periph_GPIOB, ENABLE); 
 
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13; 
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
- GPIO_Init(GPIOB, &GPIO_InitStructure); 
- 
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 ; 
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
- GPIO_Init(GPIOA, &GPIO_InitStructure); 
+			 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13; 
+			 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 
+			 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+			 GPIO_Init(GPIOB, &GPIO_InitStructure); 
+			 
+			 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 ; 
+			 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 
+			 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+			 GPIO_Init(GPIOA, &GPIO_InitStructure); 
 
     //TIM1???????(??PWM??) 
     //??=TIM1_CLK/(ARR+1) 
@@ -39,7 +39,7 @@ void TIM1_Mode_Config(void)
     TIM_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable; 
     TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High; 
     TIM_OCInitStructure.TIM_OCNPolarity =TIM_OCNPolarity_High; //TIM_OCNPolarity_Low; 
- TIM_OCInitStructure.TIM_OCIdleState  = TIM_OCIdleState_Set;         //???????1 
+		TIM_OCInitStructure.TIM_OCIdleState  = TIM_OCIdleState_Set;         //???????1 
     TIM_OCInitStructure.TIM_OCNIdleState = TIM_OCIdleState_Reset;   //?????????0  
     TIM_OCInitStructure.TIM_Pulse = 192;///288;  // 50%???= 576/2 
     TIM_OC1Init(TIM1, &TIM_OCInitStructure); 

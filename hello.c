@@ -58,12 +58,13 @@ void TIM3_IRQHandler(void)   //TIM3中断
 		{
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update  );  //清除TIMx的中断待处理位:TIM 中断源 
 			
-		TIM1->CCR1+= IncPIDCalc(adc_ch1);
+		TIM1->CCR1=TIM1->ARR/2;//+= IncPIDCalc(adc_ch1);
 		LCD_set_XY(0,0);
 		LCD_write_chinese_string(8,0,12,6,0,0);
 
 
-
+		TIM1->BDTR=0x19;
+			
 		adc_ch3=Get_Adc(0);
 		adc_ch3=adc_ch3*6.4453;
 		LCD_write_english_string(0,2,"pri");

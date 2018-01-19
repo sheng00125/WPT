@@ -67,6 +67,13 @@ void TIM3_IRQHandler(void)   //TIM3ÖÐ¶Ï
 				
 			if(TIM1->CCR1<FREQQQ_ARR_MIN)
 				TIM1->CCR1=FREQQQ_ARR_MIN;
+=======
+		TIM1->CCR1=TIM1->ARR/2;//+= IncPIDCalc(adc_ch1);
+		LCD_set_XY(0,0);
+		LCD_write_chinese_string(8,0,12,6,0,0);
+
+
+>>>>>>> 4c327c243cb4e6a7672967da6ea7bb15ada76993
 			
 		adc_ch3=Get_Adc(0);
 		adc_ch3=adc_ch3*6.4453;

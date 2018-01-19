@@ -1,6 +1,9 @@
 
 #include "stm32f10x_conf.h"
 #include "pwm.h"
+
+
+
 void TIM1_Mode_Config(void) 
 { 
       GPIO_InitTypeDef GPIO_InitStructure; 
@@ -23,7 +26,7 @@ void TIM1_Mode_Config(void)
 
     //TIM1???????(??PWM??) 
     //??=TIM1_CLK/(ARR+1) 
-    TIM_BaseInitStructure.TIM_Period = 384-1;//576-1;//   //125kHZ  (72M/125k)-1=575 
+    TIM_BaseInitStructure.TIM_Period = FREQQQ_ARR;//576-1;//   //125kHZ  (72M/125k)-1=575 
     TIM_BaseInitStructure.TIM_Prescaler = 0; 
     TIM_BaseInitStructure.TIM_ClockDivision = 0; 
     TIM_BaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up; 
@@ -39,7 +42,7 @@ void TIM1_Mode_Config(void)
     TIM_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable; 
     TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High; 
     TIM_OCInitStructure.TIM_OCNPolarity =TIM_OCNPolarity_High; //TIM_OCNPolarity_Low; 
- TIM_OCInitStructure.TIM_OCIdleState  = TIM_OCIdleState_Set;         //???????1 
+		TIM_OCInitStructure.TIM_OCIdleState  = TIM_OCIdleState_Set;         //???????1 
     TIM_OCInitStructure.TIM_OCNIdleState = TIM_OCIdleState_Reset;   //?????????0  
     TIM_OCInitStructure.TIM_Pulse = 192;///288;  // 50%???= 576/2 
     TIM_OC1Init(TIM1, &TIM_OCInitStructure); 

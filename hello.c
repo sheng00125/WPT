@@ -46,7 +46,7 @@ int main(void)
 	{
 
 		NRF24L01_RxPacket(Rx_Buf);
-
+	
 	}
 }
 
@@ -58,12 +58,16 @@ void TIM3_IRQHandler(void)   //TIM3中断
 		{
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update  );  //清除TIMx的中断待处理位:TIM 中断源 
 			
-		TIM1->CCR1+= IncPIDCalc(adc_ch1);
+	//	TIM1->CCR1+= IncPIDCalc(adc_ch1);
 		LCD_set_XY(0,0);
 		LCD_write_chinese_string(8,0,12,6,0,0);
-
-
-
+			TIM1->CCR1=FREQQQ_ARR*0.4;
+			if(TIM1->CCR1>FREQQQ_ARR_MAX)
+				TIM1->CCR1=FREQQQ_ARR_MAX;
+				
+			if(TIM1->CCR1<FREQQQ_ARR_MIN)
+				TIM1->CCR1=FREQQQ_ARR_MIN;
+			
 		adc_ch3=Get_Adc(0);
 		adc_ch3=adc_ch3*6.4453;
 		LCD_write_english_string(0,2,"pri");
